@@ -1,0 +1,20 @@
+{
+  "overview": "A private chat app where you can message your friends one-on-one with full conversation history.",
+  "features": [
+    "Login with Internet Identity",
+    "Add and manage friends by their ID",
+    "View your conversations in a sidebar",
+    "Send and receive messages in real time",
+    "Full message history that persists across sessions",
+    "Responsive layout that works on any screen size"
+  ],
+  "category": "messaging",
+  "tags": [
+    "chat",
+    "messaging",
+    "friends",
+    "private",
+    "real-time"
+  ],
+  "last_updated": "2026-06-11T12:21:30.525Z"
+}

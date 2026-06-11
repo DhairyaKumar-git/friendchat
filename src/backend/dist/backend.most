@@ -1,0 +1,77 @@
+// Version: 4.0.0
+type Data__628993992<T> = {var count : Nat__1040412405; elements : [var ?T]};
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type Internal__1007892817<T> =
+  {children : [var ?Node__918630472<T>]; data : Data__628993992<T>};
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type Leaf__693487502<T> = {data : Data__628993992<T>};
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type List__529703492<T> =
+  {
+    var blockIndex : Nat__1040412405;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__1040412405
+  };
+type List__560604548<T> = List__529703492<T>;
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type MessageId__291319400 = Nat;
+type MessageId__423578753 = Nat;
+type Message__564772707 =
+  {
+    content : Text;
+    id : MessageId__423578753;
+    recipientId : UserId__1006937085;
+    senderId : UserId__1006937085;
+    sentAt : Int
+  };
+type Message__714344397 =
+  {
+    content : Text;
+    id : MessageId__291319400;
+    recipientId : UserId__158757552;
+    senderId : UserId__158757552;
+    sentAt : Timestamp__301639476
+  };
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type NewActor__595158368 =
+  {
+    friendsStore :
+      Map__222667396<UserId__1006937085, Set__1052415927<UserId__1006937085>>;
+    messageCounter : {var nextId : MessageId__423578753};
+    messageStore : Map__222667396<Text, List__560604548<Message__564772707>>
+  };
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type Node__918630472<T> =
+  {#internal : Internal__1007892817<T>; #leaf : Leaf__693487502<T>};
+type OldActor__814828007 = {};
+type Set__1052415927<T> = Set__310360741<T>;
+type Set__310360741<T> =
+  {var root : Node__918630472<T>; var size : Nat__1040412405};
+type Timestamp__301639476 = Int;
+type UserId__1006937085 = Principal;
+type UserId__158757552 = Principal;
+{
+  "20260611_000000_Init" : OldActor__814828007 -> NewActor__595158368
+}
+actor  {
+  stable friendsStore :
+    {
+      var root :
+        Node__1000929467<UserId__158757552,
+                          Set__1052415927<UserId__158757552>>;
+      var size : Nat__1040412405
+    };
+  stable messageCounter : {var nextId : MessageId__291319400};
+  stable messageStore :
+    {
+      var root : Node__1000929467<Text, List__560604548<Message__714344397>>;
+      var size : Nat__1040412405
+    }
+};

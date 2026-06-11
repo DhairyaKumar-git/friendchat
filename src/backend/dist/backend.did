@@ -1,0 +1,33 @@
+type UserId = principal;
+type Timestamp = int;
+type MessageId = nat;
+type Message = 
+ record {
+   content: text;
+   id: MessageId;
+   recipientId: UserId;
+   senderId: UserId;
+   sentAt: Timestamp;
+ };
+type Friend = 
+ record {
+   addedAt: Timestamp;
+   userId: UserId;
+ };
+type ConversationSummary = 
+ record {
+   friendId: UserId;
+   lastActivityAt: Timestamp;
+   lastMessage: opt Message;
+ };
+service : {
+  __friendsStore: () -> (reserved) query;
+  __messageCounter: () -> (reserved) query;
+  __messageStore: () -> (reserved) query;
+  addFriend: (friendId: principal) -> ();
+  getMessageHistory: (friendId: principal) -> (vec Message) query;
+  listConversations: () -> (vec ConversationSummary) query;
+  listFriends: () -> (vec Friend) query;
+  removeFriend: (friendId: principal) -> ();
+  sendMessage: (recipientId: principal, content: text) -> (Message);
+}
